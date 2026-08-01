@@ -1,10 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>
+/* Auto-detect the visitor's language before paint. If any preferred
+   language is Spanish, switch the whole page to Spanish (no flash). */
+(function(){try{
+  var n = navigator.languages || [navigator.language || navigator.userLanguage || "en"];
+  if (n.some(function(l){ return /^es\b/i.test(l); })) {
+    document.documentElement.lang = "es";
+  }
+}catch(e){}})();
+</script>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>OTIUM — Most people don't live the way they meant to.</title>
-<meta name="description" content="OTIUM is an open standard for a life spent on what you actually care about. You write your own rules; it handles the rest. Honest about being a decade out." />
+<meta id="meta-desc" name="description" content="OTIUM is an open standard for a life spent on what you actually care about. You write your own rules; it handles the rest. Honest about being a decade out." />
+<script>
+/* Localize the tab title + meta description once the tags exist. */
+(function(){ if(document.documentElement.lang==="es"){
+  document.title = "OTIUM — Casi nadie vive como se propuso vivir.";
+  var m=document.getElementById("meta-desc");
+  if(m) m.content = "OTIUM es un estándar abierto para una vida dedicada a lo que de verdad te importa. Tú escribes tus reglas; él se encarga del resto. Honesto sobre estar a una década de distancia.";
+}})();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Space+Grotesk:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -37,6 +55,10 @@
     -webkit-font-smoothing:antialiased;
   }
   a{color:inherit;}
+
+  /* i18n: render only the active language's copy */
+  html[lang="en"] [lang="es"]{display:none!important;}
+  html[lang="es"] [lang="en"]{display:none!important;}
 
   .wrap{max-width:1120px;margin:0 auto;padding:0 32px;}
   .eyebrow{
@@ -268,10 +290,10 @@
   <div class="nav-in">
     <span class="brand">OTIUM</span>
     <div class="nav-links">
-      <a href="#does">The idea</a>
-      <a href="#never">What it won't do</a>
-      <a href="#real">When it's real</a>
-      <a href="#start" class="btn btn-ghost">Get started</a>
+      <a href="#does"><span lang="en">The idea</span><span lang="es">La idea</span></a>
+      <a href="#never"><span lang="en">What it won't do</span><span lang="es">Lo que no hará</span></a>
+      <a href="#real"><span lang="en">When it's real</span><span lang="es">Cuándo es real</span></a>
+      <a href="#start" class="btn btn-ghost"><span lang="en">Get started</span><span lang="es">Empieza</span></a>
     </div>
   </div>
 </nav>
@@ -280,22 +302,22 @@
 <header class="hero">
   <div class="wrap hero-grid">
     <div class="rise in">
-      <span class="eyebrow">A life spent on what you meant it to be</span>
-      <h1>Most people don't live the way they meant to.</h1>
-      <p class="hero-sub">Not from weakness. Staying on track — every errand, message, and small decision pointed at what you actually care about — is a full-time job nobody has. OTIUM does that job.</p>
+      <span class="eyebrow"><span lang="en">A life spent on what you meant it to be</span><span lang="es">Una vida dedicada a lo que de verdad querías</span></span>
+      <h1><span lang="en">Most people don't live the way they meant to.</span><span lang="es">Casi nadie vive como se propuso vivir.</span></h1>
+      <p class="hero-sub"><span lang="en">Not from weakness. Staying on track — every errand, message, and small decision pointed at what you actually care about — is a full-time job nobody has. OTIUM does that job.</span><span lang="es">No por debilidad. Mantener el rumbo —cada recado, mensaje y pequeña decisión apuntando a lo que de verdad te importa— es un trabajo de tiempo completo que nadie tiene. OTIUM hace ese trabajo.</span></p>
       <div class="hero-cta">
-        <a href="#start" class="btn">Get started</a>
-        <span class="hero-note">The AI future monoapp</span>
+        <a href="#start" class="btn"><span lang="en">Get started</span><span lang="es">Empieza</span></a>
+        <span class="hero-note"><span lang="en">The AI future monoapp</span><span lang="es">La monoapp del futuro con IA</span></span>
       </div>
     </div>
     <div class="phone-stage rise in" aria-hidden="false">
       <div class="phone" id="phone" role="group" aria-label="OTIUM product preview">
         <div class="p-status">
           <span id="p-time">3:42</span>
-          <span class="p-badge">ON-DEVICE</span>
+          <span class="p-badge"><span lang="en">ON-DEVICE</span><span lang="es">EN EL DISPOSITIVO</span></span>
           <span>▮▮▮ 94</span>
         </div>
-        <div class="p-say"><div class="q" id="p-say">“Good afternoon. Bench at six, dinner with Rob at eight. Ask me for any view you can describe — I'll build it on the spot.”</div></div>
+        <div class="p-say"><div class="q" id="p-say"><span lang="en">“Good afternoon. Bench at six, dinner with Rob at eight. Ask me for any view you can describe — I'll build it on the spot.”</span><span lang="es">«Buenas tardes. Pesas a las seis, cena con Rob a las ocho. Pídeme cualquier vista que puedas describir: la construyo al instante.»</span></div></div>
         <div class="p-tabs" id="p-tabs"></div>
         <div class="p-scroll" id="p-scroll"></div>
 
@@ -319,10 +341,10 @@
 <!-- ————— THE GAP ————— -->
 <section class="band">
   <div class="wrap two-col rise">
-    <p class="lead">The gap doesn't announce itself. It just quietly widens.</p>
+    <p class="lead"><span lang="en">The gap doesn't announce itself. It just quietly widens.</span><span lang="es">La brecha no se anuncia. Solo se ensancha en silencio.</span></p>
     <div class="prose">
-      <p>You said this year would be different. Then the days filled up — replies, logistics, the hundred small things that have to happen for anything to happen. Almost none of it was what you meant to spend your life on.</p>
-      <p>The distance between what you said mattered and what you actually did is the thing OTIUM was built to close.</p>
+      <p><span lang="en">You said this year would be different. Then the days filled up — replies, logistics, the hundred small things that have to happen for anything to happen. Almost none of it was what you meant to spend your life on.</span><span lang="es">Dijiste que este año sería distinto. Luego los días se llenaron: respuestas, logística, las cien pequeñas cosas que tienen que pasar para que algo pase. Casi nada de eso era en lo que querías gastar tu vida.</span></p>
+      <p><span lang="en">The distance between what you said mattered and what you actually did is the thing OTIUM was built to close.</span><span lang="es">La distancia entre lo que dijiste que importaba y lo que de verdad hiciste es lo que OTIUM fue creado para cerrar.</span></p>
     </div>
   </div>
 </section>
@@ -330,10 +352,10 @@
 <!-- ————— WHAT IT DOES ————— -->
 <section id="does">
   <div class="wrap two-col rise">
-    <div><span class="eyebrow">The idea</span></div>
+    <div><span class="eyebrow"><span lang="en">The idea</span><span lang="es">La idea</span></span></div>
     <div class="prose">
-      <p>You tell it, once and in depth, what you want your life to actually look like — <strong>what's worth your time, what isn't, what you want handled, and what you want to keep for yourself.</strong></p>
-      <p>From then on it works from that. Every demand on your time gets sorted against it: handled quietly, brought to you, or pushed back. You spend your attention on what you chose. The rest gets done without you.</p>
+      <p><span lang="en">You tell it, once and in depth, what you want your life to actually look like — <strong>what's worth your time, what isn't, what you want handled, and what you want to keep for yourself.</strong></span><span lang="es">Le dices, una vez y a fondo, cómo quieres que sea realmente tu vida: <strong>qué merece tu tiempo, qué no, qué quieres que se encargue por ti y qué quieres guardarte para ti.</strong></span></p>
+      <p><span lang="en">From then on it works from that. Every demand on your time gets sorted against it: handled quietly, brought to you, or pushed back. You spend your attention on what you chose. The rest gets done without you.</span><span lang="es">De ahí en adelante trabaja a partir de eso. Cada demanda sobre tu tiempo se ordena según eso: se resuelve en silencio, se te presenta o se rechaza. Tú dedicas tu atención a lo que elegiste. El resto se hace sin ti.</span></p>
     </div>
   </div>
 </section>
@@ -341,23 +363,23 @@
 <!-- ————— HOW IT WORKS ————— -->
 <section class="band">
   <div class="wrap rise">
-    <span class="eyebrow">How it works</span>
+    <span class="eyebrow"><span lang="en">How it works</span><span lang="es">Cómo funciona</span></span>
     <div class="blocks" style="margin-top:26px">
       <div class="block">
-        <h3>You write your own rules.</h3>
-        <p>A long first conversation turns what you care about into something the system can act on. It's yours. You change it whenever you want. Nothing is locked.</p>
+        <h3><span lang="en">You write your own rules.</span><span lang="es">Tú escribes tus propias reglas.</span></h3>
+        <p><span lang="en">A long first conversation turns what you care about into something the system can act on. It's yours. You change it whenever you want. Nothing is locked.</span><span lang="es">Una primera conversación larga convierte lo que te importa en algo sobre lo que el sistema puede actuar. Es tuyo. Lo cambias cuando quieras. Nada queda bloqueado.</span></p>
       </div>
       <div class="block">
-        <h3>It handles the moving parts.</h3>
-        <p>One request — “sort out the trip” — and it coordinates the pieces: the bookings, the calendar, the people, the budget you set. Across services, vendors, and, when they're ready, robots.</p>
+        <h3><span lang="en">It handles the moving parts.</span><span lang="es">Se encarga de las piezas en movimiento.</span></h3>
+        <p><span lang="en">One request — “sort out the trip” — and it coordinates the pieces: the bookings, the calendar, the people, the budget you set. Across services, vendors, and, when they're ready, robots.</span><span lang="es">Una sola petición —«organiza el viaje»— y coordina las piezas: las reservas, el calendario, las personas, el presupuesto que fijaste. Entre servicios, proveedores y, cuando estén listos, robots.</span></p>
       </div>
       <div class="block">
-        <h3>You see whatever you ask to see.</h3>
-        <p>There's no fixed set of screens. Describe the view you want — this week against your budget, everything you keep putting off — and it builds it. Keep it or drop it.</p>
+        <h3><span lang="en">You see whatever you ask to see.</span><span lang="es">Ves lo que pidas ver.</span></h3>
+        <p><span lang="en">There's no fixed set of screens. Describe the view you want — this week against your budget, everything you keep putting off — and it builds it. Keep it or drop it.</span><span lang="es">No hay un conjunto fijo de pantallas. Describe la vista que quieres —esta semana frente a tu presupuesto, todo lo que sigues posponiendo— y la construye. Consérvala o descártala.</span></p>
       </div>
       <div class="block">
-        <h3>Once a week, an honest look.</h3>
-        <p>It shows you your life next to what you said you wanted. Not a score. Not advice. Just the truth — so if you're drifting, it's a choice you make on purpose, not one you slide into.</p>
+        <h3><span lang="en">Once a week, an honest look.</span><span lang="es">Una vez por semana, una mirada honesta.</span></h3>
+        <p><span lang="en">It shows you your life next to what you said you wanted. Not a score. Not advice. Just the truth — so if you're drifting, it's a choice you make on purpose, not one you slide into.</span><span lang="es">Te muestra tu vida junto a lo que dijiste que querías. No es una calificación. No es un consejo. Solo la verdad: así, si te desvías, es una decisión que tomas a propósito, no una en la que te dejas caer.</span></p>
       </div>
     </div>
   </div>
@@ -366,19 +388,19 @@
 <!-- ————— WHAT IT WILL NEVER DO ————— -->
 <section id="never">
   <div class="wrap rise">
-    <span class="eyebrow">What it will never do</span>
+    <span class="eyebrow"><span lang="en">What it will never do</span><span lang="es">Lo que nunca hará</span></span>
     <div class="nevers">
       <div class="never">
-        <h3>It won't tell you how to live.</h3>
-        <p>There's no built-in idea of a good life in here. Spend your days gaming, or chasing a Nobel — same system, zero judgment. It measures your life against your rules, never anyone else's.</p>
+        <h3><span lang="en">It won't tell you how to live.</span><span lang="es">No te dirá cómo vivir.</span></h3>
+        <p><span lang="en">There's no built-in idea of a good life in here. Spend your days gaming, or chasing a Nobel — same system, zero judgment. It measures your life against your rules, never anyone else's.</span><span lang="es">Aquí no hay una idea incorporada de la buena vida. Pasa tus días jugando videojuegos o persiguiendo un Nobel: el mismo sistema, cero juicio. Mide tu vida según tus reglas, nunca las de nadie más.</span></p>
       </div>
       <div class="never">
-        <h3>It won't act behind your back.</h3>
-        <p>You hand it control one piece at a time, at your pace. Everything it does can be undone. When it isn't sure, it asks.</p>
+        <h3><span lang="en">It won't act behind your back.</span><span lang="es">No actuará a tus espaldas.</span></h3>
+        <p><span lang="en">You hand it control one piece at a time, at your pace. Everything it does can be undone. When it isn't sure, it asks.</span><span lang="es">Le cedes el control una pieza a la vez, a tu ritmo. Todo lo que hace se puede deshacer. Cuando no está seguro, pregunta.</span></p>
       </div>
       <div class="never">
-        <h3>It won't lock you in.</h3>
-        <p>The rules you write are yours to take with you. Open standard, open code, your data exportable. If we ever make it worse, someone forks it — and you walk out with everything that matters.</p>
+        <h3><span lang="en">It won't lock you in.</span><span lang="es">No te encerrará.</span></h3>
+        <p><span lang="en">The rules you write are yours to take with you. Open standard, open code, your data exportable. If we ever make it worse, someone forks it — and you walk out with everything that matters.</span><span lang="es">Las reglas que escribes son tuyas y te las llevas contigo. Estándar abierto, código abierto, tus datos exportables. Si algún día lo empeoramos, alguien lo bifurca, y tú te vas con todo lo que importa.</span></p>
       </div>
     </div>
   </div>
@@ -387,37 +409,37 @@
 <!-- ————— WHEN IT'S REAL ————— -->
 <section class="real" id="real">
   <div class="wrap rise">
-    <span class="eyebrow">When it's real</span>
-    <p class="honest">You can start today. The full vision — every service open, a robot in every home — is <em>about a decade out.</em></p>
-    <p class="fine">Right now OTIUM connects your finances, and handles email and phone calls on your behalf. Add a robot and it takes on the physical world too. <strong>The rest arrives as daily-life services open up and machines get cheaper and better.</strong> You don't wait for that — you grow into it, one piece at a time, at your pace.</p>
+    <span class="eyebrow"><span lang="en">When it's real</span><span lang="es">Cuándo es real</span></span>
+    <p class="honest"><span lang="en">You can start today. The full vision — every service open, a robot in every home — is <em>about a decade out.</em></span><span lang="es">Puedes empezar hoy. La visión completa —cada servicio abierto, un robot en cada hogar— está <em>a una década de distancia, más o menos.</em></span></p>
+    <p class="fine"><span lang="en">Right now OTIUM connects your finances, and handles email and phone calls on your behalf. Add a robot and it takes on the physical world too. <strong>The rest arrives as daily-life services open up and machines get cheaper and better.</strong> You don't wait for that — you grow into it, one piece at a time, at your pace.</span><span lang="es">Ahora mismo OTIUM conecta tus finanzas y gestiona correos y llamadas en tu nombre. Añade un robot y también asume el mundo físico. <strong>El resto llega a medida que los servicios de la vida diaria se abren y las máquinas se vuelven más baratas y mejores.</strong> No esperas a que eso ocurra: creces hacia ello, una pieza a la vez, a tu ritmo.</span></p>
   </div>
 </section>
 
 <!-- ————— GET STARTED ————— -->
 <section id="start">
   <div class="wrap rise">
-    <span class="eyebrow">Get started</span>
-    <p class="lead" style="max-width:26ch;margin:14px 0 34px">Three steps. In your own time. Stop at any one.</p>
+    <span class="eyebrow"><span lang="en">Get started</span><span lang="es">Empieza</span></span>
+    <p class="lead" style="max-width:26ch;margin:14px 0 34px"><span lang="en">Three steps. In your own time. Stop at any one.</span><span lang="es">Tres pasos. A tu tiempo. Párate en cualquiera.</span></p>
     <div class="steps">
       <div class="step">
         <span class="step-n">01</span>
-        <h3>Connect your finances</h3>
-        <p>Link your accounts, bills, and budget. It sorts them, catches the duplicate charge, disputes what's wrong, and holds the line on what you set. This is where everyone starts.</p>
+        <h3><span lang="en">Connect your finances</span><span lang="es">Conecta tus finanzas</span></h3>
+        <p><span lang="en">Link your accounts, bills, and budget. It sorts them, catches the duplicate charge, disputes what's wrong, and holds the line on what you set. This is where everyone starts.</span><span lang="es">Vincula tus cuentas, facturas y presupuesto. Los ordena, detecta el cargo duplicado, disputa lo que está mal y mantiene la raya en lo que fijaste. Aquí es donde todos empiezan.</span></p>
       </div>
       <div class="step">
         <span class="step-n">02</span>
-        <h3>Let it speak for you</h3>
-        <p>Email and phone calls, handled on your behalf — the renewal, the appointment, the back-and-forth nobody wants. You approve what matters; the rest just gets done.</p>
+        <h3><span lang="en">Let it speak for you</span><span lang="es">Deja que hable por ti</span></h3>
+        <p><span lang="en">Email and phone calls, handled on your behalf — the renewal, the appointment, the back-and-forth nobody wants. You approve what matters; the rest just gets done.</span><span lang="es">Correos y llamadas, gestionados en tu nombre: la renovación, la cita, el ir y venir que nadie quiere. Apruebas lo que importa; el resto simplemente se hace.</span></p>
       </div>
       <div class="step">
         <span class="step-n">03</span>
-        <h3>Add a robot</h3>
-        <p>Own or rent a single unit — bring your own hardware, with more options arriving fast. Now the physical world gets handled too: the errands, the chores, the things software alone can't touch.</p>
+        <h3><span lang="en">Add a robot</span><span lang="es">Añade un robot</span></h3>
+        <p><span lang="en">Own or rent a single unit — bring your own hardware, with more options arriving fast. Now the physical world gets handled too: the errands, the chores, the things software alone can't touch.</span><span lang="es">Compra o renta una sola unidad: trae tu propio hardware, con más opciones llegando pronto. Ahora también se encarga del mundo físico: los recados, las tareas, las cosas que el software por sí solo no puede tocar.</span></p>
       </div>
     </div>
     <div class="stack" style="margin-top:34px;align-items:center">
-      <a href="#" class="btn">Get started</a>
-      <span class="hero-note">Your rules, your data, reversible — always.</span>
+      <a href="#" class="btn"><span lang="en">Get started</span><span lang="es">Empieza</span></a>
+      <span class="hero-note"><span lang="en">Your rules, your data, reversible — always.</span><span lang="es">Tus reglas, tus datos, reversible — siempre.</span></span>
     </div>
   </div>
 </section>
@@ -425,15 +447,15 @@
 <!-- ————— CLOSE ————— -->
 <section class="close rise">
   <div class="wrap">
-    <p class="big">You already know how you want to live. This is for the part that comes after.</p>
-    <a href="#start" class="btn">Get started</a>
+    <p class="big"><span lang="en">You already know how you want to live. This is for the part that comes after.</span><span lang="es">Ya sabes cómo quieres vivir. Esto es para la parte que viene después.</span></p>
+    <a href="#start" class="btn"><span lang="en">Get started</span><span lang="es">Empieza</span></a>
   </div>
 </section>
 
 <footer>
   <div class="wrap foot-in">
-    <span>OTIUM · run your life</span>
-    <span><a href="mailto:hello@otium.run">hello@otium.run</a> &nbsp;·&nbsp; <a href="#">open source &amp; spec</a> &nbsp;·&nbsp; otium.run</span>
+    <span><span lang="en">OTIUM · run your life</span><span lang="es">OTIUM · dirige tu vida</span></span>
+    <span><a href="mailto:hello@otium.run">hello@otium.run</a> &nbsp;·&nbsp; <a href="#"><span lang="en">open source &amp; spec</span><span lang="es">código abierto y especificación</span></a> &nbsp;·&nbsp; otium.run</span>
   </div>
 </footer>
 
@@ -441,80 +463,89 @@
 /* ————————————————————————————————————————
    Phone: scrubbed, canned port of prototype.jsx
    No network. All views driven by local state.
+   Bilingual: strings picked by t(en, es) at load time,
+   keyed off <html lang> set by the head detection script.
    ———————————————————————————————————————— */
 (function(){
+  var L = document.documentElement.lang === "es";
+  function t(en, es){ return L ? es : en; }
+
   var DOMAINS = {
-    travel:{label:"EXPERIENCES",hue:"#4A7196"}, leisure:{label:"EXPERIENCES",hue:"#A8862C"},
-    fitness:{label:"HABITS",hue:"#A85238"}, social:{label:"RELATIONSHIPS",hue:"#8A5E88"},
-    invest:{label:"WEALTH",hue:"#5E7F4E"}, health:{label:"HEALTH",hue:"#3E7E6C"},
-    adulting:{label:"ADULTING",hue:"#5F5F86"}, growth:{label:"GROWTH",hue:"#8A7433"}
+    travel:{label:t("EXPERIENCES","EXPERIENCIAS"),hue:"#4A7196"}, leisure:{label:t("EXPERIENCES","EXPERIENCIAS"),hue:"#A8862C"},
+    fitness:{label:t("HABITS","HÁBITOS"),hue:"#A85238"}, social:{label:t("RELATIONSHIPS","RELACIONES"),hue:"#8A5E88"},
+    invest:{label:t("WEALTH","PATRIMONIO"),hue:"#5E7F4E"}, health:{label:t("HEALTH","SALUD"),hue:"#3E7E6C"},
+    adulting:{label:t("ADULTING","VIDA ADULTA"),hue:"#5F5F86"}, growth:{label:t("GROWTH","CRECIMIENTO"),hue:"#8A7433"}
   };
   var cards = [
-    {id:0,domain:"adulting",title:"Clinic bill · disputed",body:"Found a duplicate $340 charge. Dispute is filed with evidence — refund lands in 5 to 7 days.",action:"Perfect"},
-    {id:1,domain:"health",title:"Vitals · all in range",body:"You slept 7h 10m, resting heart rate 54. Recovery looks good for tonight's heavy set.",action:"See trends"},
-    {id:2,domain:"travel",title:"San Antonio → Monterrey",body:"Round trip dropped to $118. Holding the Friday 7:05am for 24 hours, no commitment.",action:"Book it"},
-    {id:3,domain:"social",title:"Dinner with Rob · Saturday",body:"Rob is free Saturday evening in Austin. Want me to hold a table at 8?",action:"Hold it"},
-    {id:4,domain:"invest",title:"Your investments · +3.1%",body:"A little ahead of plan. No rush — I'd wait until Friday's close to rebalance.",action:"See detail"},
-    {id:5,domain:"adulting",title:"Car insurance · renews soon",body:"Compared six insurers: same coverage, 18% cheaper. I can make the switch myself.",action:"Switch it"}
+    {id:0,domain:"adulting",title:t("Clinic bill · disputed","Factura de la clínica · disputada"),body:t("Found a duplicate $340 charge. Dispute is filed with evidence — refund lands in 5 to 7 days.","Encontré un cargo duplicado de $340. La disputa está presentada con pruebas; el reembolso llega en 5 a 7 días."),action:t("Perfect","Perfecto")},
+    {id:1,domain:"health",title:t("Vitals · all in range","Signos vitales · todo en rango"),body:t("You slept 7h 10m, resting heart rate 54. Recovery looks good for tonight's heavy set.","Dormiste 7h 10m, frecuencia en reposo 54. La recuperación se ve bien para la serie pesada de esta noche."),action:t("See trends","Ver tendencias")},
+    {id:2,domain:"travel",title:"San Antonio → Monterrey",body:t("Round trip dropped to $118. Holding the Friday 7:05am for 24 hours, no commitment.","El viaje redondo bajó a $118. Aparto el viernes 7:05 a. m. por 24 horas, sin compromiso."),action:t("Book it","Resérvalo")},
+    {id:3,domain:"social",title:t("Dinner with Rob · Saturday","Cena con Rob · sábado"),body:t("Rob is free Saturday evening in Austin. Want me to hold a table at 8?","Rob está libre el sábado por la noche en Austin. ¿Aparto una mesa a las 8?"),action:t("Hold it","Apártala")},
+    {id:4,domain:"invest",title:t("Your investments · +3.1%","Tus inversiones · +3.1%"),body:t("A little ahead of plan. No rush — I'd wait until Friday's close to rebalance.","Un poco adelantado al plan. Sin prisa: esperaría al cierre del viernes para rebalancear."),action:t("See detail","Ver detalle")},
+    {id:5,domain:"adulting",title:t("Car insurance · renews soon","Seguro del auto · se renueva pronto"),body:t("Compared six insurers: same coverage, 18% cheaper. I can make the switch myself.","Comparé seis aseguradoras: misma cobertura, 18% más barato. Puedo hacer el cambio yo mismo."),action:t("Switch it","Cámbialo")}
   ];
   var bots = [
-    {id:"vulcan",role:"Car robot",name:"VULCAN",station:"in the garage",task:"Rotating the tires and checking the oil",progress:62,paused:false,queue:["Inspect the brakes","Top off the coolant"],note:"car is safely secured"},
-    {id:"hestia",role:"Home robot",name:"HESTIA",station:"at home",task:"Deep-cleaning the kitchen",progress:38,paused:false,queue:["Fold the laundry","Water the plants"],note:"cats located: sofa and windowsill"},
-    {id:"hermes",role:"Errand robot",name:"HERMES",station:"on the road",task:"Picking up the dry cleaning",progress:81,paused:false,queue:["Curbside grocery at 5:40","Pharmacy refill"],note:"arriving in 12 minutes"}
+    {id:"vulcan",role:t("Car robot","Robot del auto"),name:"VULCAN",station:t("in the garage","en el garaje"),task:t("Rotating the tires and checking the oil","Rotando las llantas y revisando el aceite"),progress:62,paused:false,queue:[t("Inspect the brakes","Inspeccionar los frenos"),t("Top off the coolant","Rellenar el refrigerante")],note:t("car is safely secured","el auto está bien asegurado")},
+    {id:"hestia",role:t("Home robot","Robot del hogar"),name:"HESTIA",station:t("at home","en casa"),task:t("Deep-cleaning the kitchen","Limpiando a fondo la cocina"),progress:38,paused:false,queue:[t("Fold the laundry","Doblar la ropa"),t("Water the plants","Regar las plantas")],note:t("cats located: sofa and windowsill","gatos localizados: sofá y alféizar")},
+    {id:"hermes",role:t("Errand robot","Robot de recados"),name:"HERMES",station:t("on the road","en camino"),task:t("Picking up the dry cleaning","Recogiendo la tintorería"),progress:81,paused:false,queue:[t("Curbside grocery at 5:40","Súper en la banqueta a las 5:40"),t("Pharmacy refill","Resurtido de farmacia")],note:t("arriving in 12 minutes","llega en 12 minutos")}
   ];
   var ARCS = [
-    {name:"Strength",goal:"Bench 275",progress:89,now:"245 × 3 this week — bar speed still climbing",next:"250 × 3 · Tuesday 6pm",why:"Chosen 14 months ago. Still yours."},
-    {name:"Mind",goal:"Montaigne · the Essays",progress:60,now:"Book II — you keep re-reading 'On Idleness'",next:"15 min tonight, before bed",why:"Read the people who already solved leisure."},
-    {name:"Craft",goal:"12 essays this year",progress:25,now:"Essay 3 drafted, unfinished for 11 days",next:"400 words · Sunday morning, coffee",why:"Making something beats consuming everything."}
+    {name:t("Strength","Fuerza"),goal:t("Bench 275","Press de banca 275"),progress:89,now:t("245 × 3 this week — bar speed still climbing","245 × 3 esta semana — la velocidad de la barra sigue subiendo"),next:t("250 × 3 · Tuesday 6pm","250 × 3 · martes 6 p. m."),why:t("Chosen 14 months ago. Still yours.","Elegido hace 14 meses. Sigue siendo tuyo.")},
+    {name:t("Mind","Mente"),goal:t("Montaigne · the Essays","Montaigne · los Ensayos"),progress:60,now:t("Book II — you keep re-reading 'On Idleness'","Libro II — sigues releyendo «De la ociosidad»"),next:t("15 min tonight, before bed","15 min esta noche, antes de dormir"),why:t("Read the people who already solved leisure.","Lee a quienes ya resolvieron el ocio.")},
+    {name:t("Craft","Oficio"),goal:t("12 essays this year","12 ensayos este año"),progress:25,now:t("Essay 3 drafted, unfinished for 11 days","Ensayo 3 esbozado, sin terminar desde hace 11 días"),next:t("400 words · Sunday morning, coffee","400 palabras · domingo por la mañana, café"),why:t("Making something beats consuming everything.","Crear algo vale más que consumirlo todo.")}
   ];
   var AUDIT = [
-    {pillar:"Habits",val:92,note:"4 of 4 workouts done"},
-    {pillar:"Health",val:88,note:"sleep steady, averaging 7h 05m"},
-    {pillar:"Wealth",val:85,note:"budget held, dispute won"},
-    {pillar:"Relationships",val:74,note:"call with your sister done · Rob still pending"},
-    {pillar:"Mind",val:40,note:"only 1 of 5 reading sessions — weakest this week"}
+    {pillar:t("Habits","Hábitos"),val:92,note:t("4 of 4 workouts done","4 de 4 entrenamientos hechos")},
+    {pillar:t("Health","Salud"),val:88,note:t("sleep steady, averaging 7h 05m","sueño estable, promedio 7h 05m")},
+    {pillar:t("Wealth","Patrimonio"),val:85,note:t("budget held, dispute won","presupuesto respetado, disputa ganada")},
+    {pillar:t("Relationships","Relaciones"),val:74,note:t("call with your sister done · Rob still pending","llamada con tu hermana hecha · Rob aún pendiente")},
+    {pillar:t("Mind","Mente"),val:40,note:t("only 1 of 5 reading sessions — weakest this week","solo 1 de 5 sesiones de lectura — lo más flojo de la semana")}
   ];
-  var CHIPS = ["Show my Monterrey trips","Build me a view for the cats","What should I take on next?","How's my week going?"];
-  var CANNED = {
-    "Show my Monterrey trips":{spoken:"Built it just now — your Monterrey view is on the surface. Keep it and it becomes a tab; dismiss it and it's gone.",surface:{title:"Monterrey · your trips",items:[
-      {label:"Last trip",value:"March · 4 days",note:"Barrio Antiguo at night, 22,000 steps"},
-      {label:"Most photographed",value:"Cerro de la Silla",note:"dusk, from the Macroplaza side"},
-      {label:"Open loop",value:"The mezcal bar Rob mentioned",note:"still unvisited — near your usual taquería"}
-    ]}},
-    "Build me a view for the cats":{spoken:"Here's a view for the two of them. Keep it if it's useful.",surface:{title:"The cats",items:[
-      {label:"Last vet visit",value:"Both current",note:"next checkup not due until spring"},
-      {label:"Food",value:"6 days left",note:"auto-reorder set for Thursday"},
-      {label:"Right now",value:"Sofa & windowsill",note:"same as always"}
-    ]}},
-    "What should I take on next?":{spoken:"You said reading is where you're weakest this week — one session of five. That's the honest gap, if you want one."},
-    "How's my week going?":{spoken:"Strong in body and money, thin on reading. You said fifteen minutes a day; it happened once. Want me to defend it on your calendar?"}
-  };
+  var CH1=t("Show my Monterrey trips","Muéstrame mis viajes a Monterrey");
+  var CH2=t("Build me a view for the cats","Créame una vista para los gatos");
+  var CH3=t("What should I take on next?","¿Qué debería emprender ahora?");
+  var CH4=t("How's my week going?","¿Cómo va mi semana?");
+  var CHIPS = [CH1, CH2, CH3, CH4];
+  var CANNED = {};
+  CANNED[CH1]={spoken:t("Built it just now — your Monterrey view is on the surface. Keep it and it becomes a tab; dismiss it and it's gone.","Lo acabo de construir: tu vista de Monterrey está en la superficie. Consérvala y se vuelve una pestaña; descártala y desaparece."),surface:{title:t("Monterrey · your trips","Monterrey · tus viajes"),items:[
+    {label:t("Last trip","Último viaje"),value:t("March · 4 days","Marzo · 4 días"),note:t("Barrio Antiguo at night, 22,000 steps","Barrio Antiguo de noche, 22,000 pasos")},
+    {label:t("Most photographed","Lo más fotografiado"),value:"Cerro de la Silla",note:t("dusk, from the Macroplaza side","al atardecer, desde el lado de la Macroplaza")},
+    {label:t("Open loop","Pendiente"),value:t("The mezcal bar Rob mentioned","El bar de mezcal que mencionó Rob"),note:t("still unvisited — near your usual taquería","aún sin visitar — cerca de tu taquería de siempre")}
+  ]}};
+  CANNED[CH2]={spoken:t("Here's a view for the two of them. Keep it if it's useful.","Aquí tienes una vista para los dos. Consérvala si te sirve."),surface:{title:t("The cats","Los gatos"),items:[
+    {label:t("Last vet visit","Última visita al veterinario"),value:t("Both current","Ambos al día"),note:t("next checkup not due until spring","la próxima revisión no toca hasta la primavera")},
+    {label:t("Food","Comida"),value:t("6 days left","quedan 6 días"),note:t("auto-reorder set for Thursday","resurtido automático programado para el jueves")},
+    {label:t("Right now","Ahora mismo"),value:t("Sofa & windowsill","Sofá y alféizar"),note:t("same as always","como siempre")}
+  ]}};
+  CANNED[CH3]={spoken:t("You said reading is where you're weakest this week — one session of five. That's the honest gap, if you want one.","Dijiste que la lectura es tu punto más flojo esta semana: una sesión de cinco. Esa es la brecha honesta, si quieres una.")};
+  CANNED[CH4]={spoken:t("Strong in body and money, thin on reading. You said fifteen minutes a day; it happened once. Want me to defend it on your calendar?","Fuerte en cuerpo y dinero, flojo en lectura. Dijiste quince minutos al día; ocurrió una vez. ¿Quieres que lo defienda en tu calendario?")};
 
   var state = { tab:"today", growthMode:"deliberate", dynSurface:null, kept:[], listening:false };
   var $ = function(id){ return document.getElementById(id); };
   var esc = function(s){ return String(s).replace(/[&<>]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;"}[c];}); };
-  function say(t){ var el=$("p-say"); el.style.opacity=0; setTimeout(function(){ el.textContent="“"+t+"”"; el.style.opacity=1; },180); }
+  var openq = t("“","«"), closeq = t("”","»");
+  function say(t2){ var el=$("p-say"); el.style.opacity=0; setTimeout(function(){ el.textContent=openq+t2+closeq; el.style.opacity=1; },180); }
 
   function renderTabs(){
-    var t=$("p-tabs"); t.innerHTML="";
+    var tt=$("p-tabs"); tt.innerHTML="";
     var active=bots.filter(function(b){return !b.paused;}).length;
-    var tabs=[["today","Today"],["bots","Robots · "+active],["growth","Growth"],["week","This week"]];
+    var tabs=[["today",t("Today","Hoy")],["bots",t("Robots","Robots")+" · "+active],["growth",t("Growth","Crecimiento")],["week",t("This week","Esta semana")]];
     state.kept.forEach(function(s,i){ tabs.push(["dyn-"+i, s.title.split("·")[0].trim()]); });
     tabs.forEach(function(pair){
       var b=document.createElement("button");
       b.className="p-tab"+(state.tab===pair[0]?" on":"");
       b.textContent=pair[1];
       b.onclick=function(){ state.tab=pair[0]; render(); };
-      t.appendChild(b);
+      tt.appendChild(b);
     });
   }
 
   function surfaceHTML(s,pinned){
     var head = pinned
-      ? '<span class="pc-label" style="color:var(--gold)">YOUR SURFACE</span>'
-      : '<span class="pc-label" style="color:var(--gold)">GENERATED ON THE FLY</span>'+
-        '<span><button class="pill" id="keep-surf" style="padding:4px 12px;font-size:11px">Keep as tab</button>'+
-        '<button class="pill-ghost" id="dismiss-surf" style="font-size:11px">Dismiss</button></span>';
+      ? '<span class="pc-label" style="color:var(--gold)">'+t("YOUR SURFACE","TU SUPERFICIE")+'</span>'
+      : '<span class="pc-label" style="color:var(--gold)">'+t("GENERATED ON THE FLY","GENERADO AL VUELO")+'</span>'+
+        '<span><button class="pill" id="keep-surf" style="padding:4px 12px;font-size:11px">'+t("Keep as tab","Guardar como pestaña")+'</button>'+
+        '<button class="pill-ghost" id="dismiss-surf" style="font-size:11px">'+t("Dismiss","Descartar")+'</button></span>';
     var items = s.items.map(function(it,i){
       return '<div style="padding:9px 0;border-top:'+(i===0?"none":"1px solid var(--hairline)")+'">'+
         '<div style="display:flex;justify-content:space-between;gap:12px"><span style="font-size:12.5px;color:var(--dim)">'+esc(it.label)+'</span>'+
@@ -540,51 +571,51 @@
           '<div class="pc-title">'+esc(c.title)+'</div>'+
           '<div class="pc-body">'+esc(c.body)+'</div>'+
           '<div style="display:flex;gap:8px"><button class="pill" data-do="'+c.id+'">'+esc(c.action)+'</button>'+
-          '<button class="pill-ghost" data-later="'+c.id+'">Later</button></div></div>';
+          '<button class="pill-ghost" data-later="'+c.id+'">'+t("Later","Después")+'</button></div></div>';
       });
     }
 
     else if(v==="bots"){
-      out+='<div class="p-note">Your three robots work on their own while you live your life. Here\'s what each is doing now, and what\'s next.</div>';
+      out+='<div class="p-note">'+t("Your three robots work on their own while you live your life. Here's what each is doing now, and what's next.","Tus tres robots trabajan solos mientras tú vives tu vida. Esto es lo que hace cada uno ahora y lo que sigue.")+'</div>';
       bots.forEach(function(b){
         var pct=Math.round(Math.min(b.progress,100));
         out+='<div class="pc">'+
           '<div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-size:14.5px;color:var(--ink);font-weight:500">'+b.role+' <span class="pc-dot" style="background:'+(b.paused?"var(--faint)":"#5E7F4E")+';margin-left:6px"></span></span>'+
           '<span class="mono">'+b.name+' · '+b.station+'</span></div>'+
-          '<div style="font-family:var(--serif);font-style:italic;font-weight:300;font-size:15px;color:var(--dim);margin:6px 0 8px">Now: '+esc(b.task)+'</div>'+
+          '<div style="font-family:var(--serif);font-style:italic;font-weight:300;font-size:15px;color:var(--dim);margin:6px 0 8px">'+t("Now: ","Ahora: ")+esc(b.task)+'</div>'+
           '<div class="p-bar"><i style="width:'+pct+'%;background:'+(b.paused?"var(--faint)":"var(--bar)")+'"></i></div>'+
-          '<div class="mono" style="display:flex;justify-content:space-between"><span>'+esc(b.note)+'</span><span>'+pct+'% done</span></div>'+
-          (b.queue.length?'<div class="p-next">UP NEXT</div>'+b.queue.map(function(q){return '<div class="p-q">› '+esc(q)+'</div>';}).join(""):'')+
-          '<div style="display:flex;gap:8px;margin-top:10px"><button class="pill" style="background:var(--raised);color:var(--ink);border-color:var(--hairline)" data-pause="'+b.id+'">'+(b.paused?"Resume":"Pause")+'</button></div>'+
+          '<div class="mono" style="display:flex;justify-content:space-between"><span>'+esc(b.note)+'</span><span>'+pct+t("% done","% listo")+'</span></div>'+
+          (b.queue.length?'<div class="p-next">'+t("UP NEXT","LO QUE SIGUE")+'</div>'+b.queue.map(function(q){return '<div class="p-q">› '+esc(q)+'</div>';}).join(""):'')+
+          '<div style="display:flex;gap:8px;margin-top:10px"><button class="pill" style="background:var(--raised);color:var(--ink);border-color:var(--hairline)" data-pause="'+b.id+'">'+(b.paused?t("Resume","Reanudar"):t("Pause","Pausar"))+'</button></div>'+
         '</div>';
       });
     }
 
     else if(v==="growth"){
-      out+='<div class="pc" style="border:none;box-shadow:none;background:transparent;font-family:var(--serif);font-style:italic;font-weight:300;font-size:16px;line-height:1.55;color:var(--dim);padding:4px 4px 14px">“No job defines you here. These are the things you chose to keep working on — I keep them alive, you set the pace. Quitting one is allowed; forgetting you had the option is not.”</div>';
+      out+='<div class="pc" style="border:none;box-shadow:none;background:transparent;font-family:var(--serif);font-style:italic;font-weight:300;font-size:16px;line-height:1.55;color:var(--dim);padding:4px 4px 14px">'+openq+t("No job defines you here. These are the things you chose to keep working on — I keep them alive, you set the pace. Quitting one is allowed; forgetting you had the option is not.","Ningún trabajo te define aquí. Estas son las cosas en las que elegiste seguir trabajando: yo las mantengo vivas, tú marcas el ritmo. Abandonar una está permitido; olvidar que tenías la opción, no.")+closeq+'</div>';
       var dm=state.growthMode==="deliberate";
       out+='<div class="pc" style="display:flex;justify-content:space-between;align-items:center">'+
-        '<div><div style="font-size:13.5px;font-weight:500;color:var(--ink)">'+(dm?"Deliberate mode":"Drift mode")+'</div>'+
-        '<div style="font-size:11.5px;color:var(--faint);max-width:180px;line-height:1.4">'+(dm?"I schedule next steps and defend them on your calendar.":"No scheduling, no nudges. It stays warm; the door stays open.")+'</div></div>'+
-        '<button class="p-toggle'+(dm?'':' off')+'" data-mode="1">'+(dm?"Switch to drift":"Re-engage")+'</button></div>';
+        '<div><div style="font-size:13.5px;font-weight:500;color:var(--ink)">'+(dm?t("Deliberate mode","Modo deliberado"):t("Drift mode","Modo a la deriva"))+'</div>'+
+        '<div style="font-size:11.5px;color:var(--faint);max-width:180px;line-height:1.4">'+(dm?t("I schedule next steps and defend them on your calendar.","Programo los siguientes pasos y los defiendo en tu calendario."):t("No scheduling, no nudges. It stays warm; the door stays open.","Sin agenda, sin empujones. Se mantiene tibio; la puerta queda abierta."))+'</div></div>'+
+        '<button class="p-toggle'+(dm?'':' off')+'" data-mode="1">'+(dm?t("Switch to drift","Cambiar a la deriva"):t("Re-engage","Reactivar"))+'</button></div>';
       ARCS.forEach(function(a){
         out+='<div class="pc" style="opacity:'+(dm?1:0.65)+'">'+
           '<div style="display:flex;justify-content:space-between;align-items:baseline"><span class="pc-label">'+a.name.toUpperCase()+'</span><span class="mono" style="color:var(--gold)">'+a.progress+'%</span></div>'+
           '<div class="pc-title" style="margin:4px 0 6px">'+esc(a.goal)+'</div>'+
           '<div class="p-bar"><i style="width:'+a.progress+'%"></i></div>'+
           '<div style="font-family:var(--serif);font-style:italic;font-weight:300;font-size:13.5px;color:var(--dim);margin-bottom:6px">'+esc(a.now)+'</div>'+
-          (dm?'<div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--hairline);padding-top:8px"><span style="font-size:12px;color:var(--dim)">Next: '+esc(a.next)+'</span><button class="pill" style="padding:5px 12px;font-size:11.5px" data-hold="'+esc(a.next)+'">Hold it</button></div>':'')+
+          (dm?'<div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--hairline);padding-top:8px"><span style="font-size:12px;color:var(--dim)">'+t("Next: ","Siguiente: ")+esc(a.next)+'</span><button class="pill" style="padding:5px 12px;font-size:11.5px" data-hold="'+esc(a.next)+'">'+t("Hold it","Apártalo")+'</button></div>':'')+
           '<div style="font-size:10.5px;color:var(--faint);margin-top:8px">'+esc(a.why)+'</div></div>';
       });
-      out+='<div class="pc"><div class="pc-label" style="margin-bottom:10px">THIS WEEK\'S TIME</div>'+
-        [["Growth",6,"var(--bar)"],["Leisure",14,"#4A7196"],["People",9,"#8A5E88"]].map(function(r){
+      out+='<div class="pc"><div class="pc-label" style="margin-bottom:10px">'+t("THIS WEEK'S TIME","EL TIEMPO DE ESTA SEMANA")+'</div>'+
+        [[t("Growth","Crecimiento"),6,"var(--bar)"],[t("Leisure","Ocio"),14,"#4A7196"],[t("People","Personas"),9,"#8A5E88"]].map(function(r){
           return '<div style="margin-bottom:8px"><div style="display:flex;justify-content:space-between;font-size:12px;color:var(--dim)"><span>'+r[0]+'</span><span class="mono">'+r[1]+'h</span></div><div class="p-bar"><i style="width:'+(r[1]/14*100)+'%;background:'+r[2]+'"></i></div></div>';
         }).join("")+
-        '<div style="font-family:var(--serif);font-style:italic;font-weight:300;font-size:13px;color:var(--faint);margin-top:8px;line-height:1.5">Growth is seasoning, not the meal. This ratio is healthy — I\'d only speak up if it hit zero.</div></div>';
+        '<div style="font-family:var(--serif);font-style:italic;font-weight:300;font-size:13px;color:var(--faint);margin-top:8px;line-height:1.5">'+t("Growth is seasoning, not the meal. This ratio is healthy — I'd only speak up if it hit zero.","El crecimiento es el condimento, no el plato. Esta proporción es sana; solo hablaría si llegara a cero.")+'</div></div>';
     }
 
     else if(v==="week"){
-      out+='<div class="pc" style="border:none;box-shadow:none;background:transparent;font-family:var(--serif);font-style:italic;font-weight:300;font-size:16px;line-height:1.55;color:var(--dim);padding:4px 4px 16px">“Your week against what you said mattered: strong in body and money, thin on the mind. You said fifteen minutes of reading a day — it happened once. Want me to defend it on your calendar?”</div>';
+      out+='<div class="pc" style="border:none;box-shadow:none;background:transparent;font-family:var(--serif);font-style:italic;font-weight:300;font-size:16px;line-height:1.55;color:var(--dim);padding:4px 4px 16px">'+openq+t("Your week against what you said mattered: strong in body and money, thin on the mind. You said fifteen minutes of reading a day — it happened once. Want me to defend it on your calendar?","Tu semana frente a lo que dijiste que importaba: fuerte en cuerpo y dinero, flojo en la mente. Dijiste quince minutos de lectura al día; ocurrió una vez. ¿Quieres que lo defienda en tu calendario?")+closeq+'</div>';
       AUDIT.forEach(function(a){
         var ok=a.val>=70;
         out+='<div class="pc"><div style="display:flex;justify-content:space-between;margin-bottom:8px"><span style="font-size:13.5px;font-weight:500;color:var(--ink)">'+a.pillar+'</span><span class="mono" style="color:'+(ok?"var(--gold)":"var(--low)")+'">'+a.val+'%</span></div>'+
@@ -604,14 +635,14 @@
 
   function wire(){
     var s=$("p-scroll");
-    s.querySelectorAll("[data-do]").forEach(function(b){ b.onclick=function(){ removeCard(+b.getAttribute("data-do")); say("Done — it's handled. I'll confirm when it clears."); }; });
+    s.querySelectorAll("[data-do]").forEach(function(b){ b.onclick=function(){ removeCard(+b.getAttribute("data-do")); say(t("Done — it's handled. I'll confirm when it clears.","Listo, ya está gestionado. Te confirmo cuando se concrete.")); }; });
     s.querySelectorAll("[data-later]").forEach(function(b){ b.onclick=function(){ removeCard(+b.getAttribute("data-later")); }; });
     s.querySelectorAll("[data-pause]").forEach(function(b){ b.onclick=function(){ var id=b.getAttribute("data-pause"); bots.forEach(function(x){ if(x.id===id) x.paused=!x.paused; }); render(); }; });
     s.querySelectorAll("[data-mode]").forEach(function(b){ b.onclick=function(){ state.growthMode=state.growthMode==="deliberate"?"drift":"deliberate"; render(); }; });
-    s.querySelectorAll("[data-hold]").forEach(function(b){ b.onclick=function(){ say((b.getAttribute("data-hold")||"It").toLowerCase()+" is on your calendar and defended."); }; });
+    s.querySelectorAll("[data-hold]").forEach(function(b){ b.onclick=function(){ var val=b.getAttribute("data-hold")||"It"; say(L ? ("«"+val+"» está en tu calendario y defendido.") : (val.toLowerCase()+" is on your calendar and defended.")); }; });
     var keep=$("keep-surf"), dis=$("dismiss-surf");
-    if(keep) keep.onclick=function(){ state.kept.push(state.dynSurface); state.tab="dyn-"+(state.kept.length-1); state.dynSurface=null; say("Pinned. It's a tab now — say the word and I'll retire it whenever."); render(); };
-    if(dis) dis.onclick=function(){ state.dynSurface=null; say("Gone."); render(); };
+    if(keep) keep.onclick=function(){ state.kept.push(state.dynSurface); state.tab="dyn-"+(state.kept.length-1); state.dynSurface=null; say(t("Pinned. It's a tab now — say the word and I'll retire it whenever.","Fijado. Ahora es una pestaña; solo dilo y la retiro cuando quieras.")); render(); };
+    if(dis) dis.onclick=function(){ state.dynSurface=null; say(t("Gone.","Listo, fuera.")); render(); };
   }
 
   function removeCard(id){ cards=cards.filter(function(c){return c.id!==id;}); render(); }
@@ -623,7 +654,7 @@
       if(hit.surface){ state.dynSurface=hit.surface; state.tab="today"; }
       say(hit.spoken); render();
     } else {
-      say("This is a preview — in the live version I'd build that for you on the spot.");
+      say(t("This is a preview — in the live version I'd build that for you on the spot.","Esto es una vista previa; en la versión real te lo construiría al instante."));
     }
     state.listening=false; renderDock();
   }
@@ -635,9 +666,13 @@
   function renderDock(){
     $("p-chipbox").style.display = state.listening?"block":"none";
     $("p-mic").classList.toggle("live",state.listening);
-    $("p-state").textContent = state.listening?"LISTENING":"ALWAYS ON · TAP TO SPEAK";
+    $("p-state").textContent = state.listening?t("LISTENING","ESCUCHANDO"):t("ALWAYS ON · TAP TO SPEAK","SIEMPRE ACTIVO · TOCA PARA HABLAR");
     if(state.listening) setTimeout(function(){ var i=$("p-input"); if(i) i.focus(); },30);
   }
+
+  /* localize placeholder + mic label */
+  $("p-input").placeholder = t("Speak… describe any view and I'll build it","Habla… describe cualquier vista y la construyo");
+  $("p-mic").setAttribute("aria-label", t("Tap to speak","Toca para hablar"));
 
   $("p-mic").onclick=function(){ state.listening=!state.listening; renderDock(); };
   $("p-input").addEventListener("keydown",function(e){ if(e.key==="Enter"){ ask(e.target.value.trim()); e.target.value=""; } });
@@ -652,7 +687,7 @@
         b.progress += Math.random()*3.0;
         if(b.progress>=100){
           if(b.queue.length){ b.task=b.queue.shift(); b.progress=0; }
-          else { b.task="Resting · docked"; b.progress=100; b.paused=true; }
+          else { b.task=t("Resting · docked","En reposo · acoplado"); b.progress=100; b.paused=true; }
           changed=true;
         }
       });
