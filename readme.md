@@ -1,5 +1,9 @@
 # Website 🌐
 
+![](https://img.shields.io/gitlab/pipeline-status/otium-hq/website?branch=main&logo=gitlab)
+![](https://img.shields.io/badge/site-otium.run-9A671D)
+![](https://img.shields.io/badge/host-s3%20%2B%20cloudfront-FF9900?logo=amazon-aws)
+
 > otium.run marketing site — single-file static page.
 
 ## About
