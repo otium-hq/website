@@ -2,13 +2,23 @@
 <html lang="en">
 <head>
 <script>
-/* Auto-detect the visitor's language before paint. If any preferred
-   language is Spanish, switch the whole page to Spanish (no flash). */
+/* Pick the page language before paint (no flash). Priority:
+   1. ?lang=es|en override in the URL (remembered for next visit)
+   2. a previously remembered choice
+   3. auto-detect: Spanish if it's anywhere in the browser's language list */
 (function(){try{
-  var n = navigator.languages || [navigator.language || navigator.userLanguage || "en"];
-  if (n.some(function(l){ return /^es\b/i.test(l); })) {
-    document.documentElement.lang = "es";
+  var q = (location.search.match(/[?&]lang=(es|en)\b/i) || [])[1];
+  if (q) q = q.toLowerCase();
+  if (q){ try{ localStorage.setItem("otium-lang", q); }catch(e){} }
+  var saved = q || (function(){ try{ return localStorage.getItem("otium-lang"); }catch(e){ return null; } })();
+  var lang;
+  if (saved === "es" || saved === "en") {
+    lang = saved;
+  } else {
+    var n = navigator.languages || [navigator.language || navigator.userLanguage || "en"];
+    lang = n.some(function(l){ return /^es\b/i.test(l); }) ? "es" : "en";
   }
+  document.documentElement.lang = lang;
 }catch(e){}})();
 </script>
 <meta charset="UTF-8" />
