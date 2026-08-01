@@ -1,0 +1,13 @@
+stages:
+  - deploy
+
+deploy:
+  stage: deploy
+  image:
+    name: amazon/aws-cli:latest
+    entrypoint: [""]
+  script:
+    - aws s3 sync . s3://otium-run --exclude ".git/*" --exclude ".gitlab-ci.yml" --exclude ".gitignore" --exclude "CLAUDE.md" --exclude ".claude/*" --exclude "readme.md" --delete
+    - aws cloudfront create-invalidation --distribution-id E2UM72YJIUOGWD --paths "/*"
+  only:
+    - main

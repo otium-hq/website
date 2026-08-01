@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>OTIUM — Most people don't live the way they meant to.</title>
+<meta name="description" content="OTIUM is an open standard for a life spent on what you actually care about. You write your own rules; it handles the rest. Honest about being a decade out." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Space+Grotesk:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ground:#ECE6DA;
+    --ground-2:#E4DDCF;
+    --paper:#FAF7F0;
+    --surface:#FFFFFF;
+    --raised:#F1EDE2;
+    --ink:#1F1C16;
+    --dim:rgba(31,28,22,0.64);
+    --faint:rgba(31,28,22,0.40);
+    --hairline:rgba(31,28,22,0.10);
+    --gold:#9A671D;
+    --gold-soft:rgba(154,103,29,0.10);
+    --gold-border:rgba(154,103,29,0.35);
+    --bar:#C08A3E;
+    --low:#B4543C;
+    --serif:'Fraunces',Georgia,serif;
+    --sans:'Space Grotesk',system-ui,sans-serif;
+    --mono:'JetBrains Mono',monospace;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;background:var(--ground);color:var(--ink);
+    font-family:var(--sans);font-size:17px;line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+
+  .wrap{max-width:1120px;margin:0 auto;padding:0 32px;}
+  .eyebrow{
+    font-family:var(--mono);font-size:11px;letter-spacing:0.24em;
+    text-transform:uppercase;color:var(--gold);
+  }
+
+  /* ————— nav ————— */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(236,230,218,0.82);backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--hairline);
+  }
+  .nav-in{
+    max-width:1120px;margin:0 auto;padding:14px 32px;
+    display:flex;align-items:center;justify-content:space-between;gap:24px;
+  }
+  .brand{font-family:var(--serif);font-weight:500;font-size:21px;letter-spacing:0.02em;}
+  .nav-links{display:flex;gap:26px;align-items:center;}
+  .nav-links a{
+    font-family:var(--mono);font-size:12px;letter-spacing:0.05em;
+    color:var(--dim);text-decoration:none;transition:color .2s;
+  }
+  .nav-links a:hover{color:var(--ink);}
+  .btn{
+    font-family:var(--sans);font-weight:500;font-size:14px;
+    background:var(--ink);color:var(--paper);border:1px solid var(--ink);
+    border-radius:99px;padding:9px 20px;text-decoration:none;
+    display:inline-block;cursor:pointer;transition:opacity .2s,transform .2s;
+  }
+  .btn:hover{opacity:0.88;}
+  .btn-ghost{
+    background:transparent;color:var(--ink);border:1px solid var(--gold-border);
+  }
+  .btn-ghost:hover{background:var(--gold-soft);}
+  @media(max-width:720px){ .nav-links a{display:none;} .nav-links .btn{display:inline-block;} }
+
+  /* ————— hero ————— */
+  .hero{padding:76px 0 40px;}
+  .hero-grid{
+    display:grid;grid-template-columns:1.05fr 0.95fr;gap:56px;align-items:center;
+  }
+  h1{
+    font-family:var(--serif);font-weight:400;
+    font-size:clamp(38px,5.4vw,62px);line-height:1.04;
+    letter-spacing:-0.01em;margin:14px 0 0;
+  }
+  .hero-sub{
+    font-size:19px;color:var(--dim);max-width:30ch;margin:22px 0 30px;line-height:1.55;
+  }
+  .hero-cta{display:flex;gap:14px;align-items:center;flex-wrap:wrap;}
+  .hero-note{font-family:var(--mono);font-size:11px;color:var(--faint);letter-spacing:0.04em;}
+
+  /* ————— sections ————— */
+  section{padding:72px 0;}
+  .band{background:var(--ground-2);}
+  .lead{
+    font-family:var(--serif);font-weight:300;font-style:italic;
+    font-size:clamp(24px,3.3vw,34px);line-height:1.4;
+    max-width:20ch;margin:0;
+  }
+  .prose{max-width:56ch;}
+  .prose p{font-size:18px;color:var(--dim);margin:0 0 20px;}
+  .prose p strong{color:var(--ink);font-weight:500;}
+  .two-col{display:grid;grid-template-columns:auto 1fr;gap:56px;align-items:start;}
+  @media(max-width:860px){ .two-col{grid-template-columns:1fr;gap:24px;} .lead{max-width:none;} }
+
+  /* how it works */
+  .blocks{display:grid;grid-template-columns:1fr 1fr;gap:2px;
+    background:var(--hairline);border:1px solid var(--hairline);border-radius:18px;overflow:hidden;}
+  .block{background:var(--paper);padding:30px 32px;}
+  .block h3{
+    font-family:var(--sans);font-weight:500;font-size:17px;margin:0 0 8px;
+  }
+  .block p{margin:0;color:var(--dim);font-size:16px;line-height:1.55;}
+  @media(max-width:720px){ .blocks{grid-template-columns:1fr;} }
+
+  /* never — the trust contract */
+  .nevers{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:34px;}
+  .never{
+    background:var(--paper);border:1px solid var(--hairline);border-radius:18px;
+    padding:26px 26px 28px;position:relative;
+  }
+  .never::before{
+    content:"";position:absolute;left:26px;top:0;width:34px;height:2px;background:var(--gold);
+  }
+  .never h3{font-family:var(--sans);font-weight:500;font-size:16px;margin:22px 0 8px;}
+  .never p{margin:0;color:var(--dim);font-size:15px;line-height:1.55;}
+  @media(max-width:860px){ .nevers{grid-template-columns:1fr;} }
+
+  /* when it's real — the honest moment */
+  .real{background:var(--ink);color:var(--paper);}
+  .real .eyebrow{color:var(--bar);}
+  .real .honest{
+    font-family:var(--serif);font-weight:300;
+    font-size:clamp(26px,3.8vw,40px);line-height:1.34;
+    max-width:24ch;margin:18px 0 0;color:var(--paper);
+  }
+  .real .honest em{font-style:italic;color:var(--bar);}
+  .real .fine{
+    max-width:52ch;margin-top:28px;color:rgba(250,247,240,0.66);font-size:17px;line-height:1.6;
+  }
+  .real .fine strong{color:var(--paper);font-weight:500;}
+
+  /* standard */
+  .standard .prose p{color:var(--dim);}
+  .stack{display:flex;gap:14px;flex-wrap:wrap;margin-top:26px;}
+  .spec-terms{font-family:var(--mono);font-size:12px;color:var(--faint);
+    letter-spacing:0.03em;margin-top:22px;line-height:1.9;}
+  .spec-terms span{color:var(--gold);}
+
+  /* get started steps */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .step{background:var(--paper);border:1px solid var(--hairline);border-radius:18px;padding:28px 26px;position:relative;}
+  .step-n{font-family:var(--mono);font-size:12px;letter-spacing:0.15em;color:var(--gold);}
+  .step h3{font-family:var(--serif);font-weight:400;font-size:21px;margin:14px 0 8px;letter-spacing:-0.01em;}
+  .step p{margin:0;color:var(--dim);font-size:15.5px;line-height:1.55;}
+  @media(max-width:860px){ .steps{grid-template-columns:1fr;} }
+
+  /* close */
+  .close{text-align:center;padding:96px 0;}
+  .close .big{
+    font-family:var(--serif);font-weight:400;
+    font-size:clamp(30px,4.6vw,52px);line-height:1.18;letter-spacing:-0.01em;
+    max-width:16ch;margin:0 auto 34px;
+  }
+
+  footer{border-top:1px solid var(--hairline);padding:34px 0;}
+  .foot-in{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;}
+  .foot-in,.foot-in a{font-family:var(--mono);font-size:12px;color:var(--faint);letter-spacing:0.04em;text-decoration:none;}
+  .foot-in a:hover{color:var(--gold);}
+
+  /* reveal */
+  .rise{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s ease;}
+  .rise.in{opacity:1;transform:none;}
+  @media(prefers-reduced-motion:reduce){
+    .rise{opacity:1;transform:none;transition:none;}
+    *{scroll-behavior:auto;}
+  }
+
+  /* ————————————————————————————————————————
+     PHONE  (ported from prototype, scrubbed + canned)
+     ———————————————————————————————————————— */
+  .phone-stage{display:flex;justify-content:center;}
+  .phone{
+    width:360px;height:760px;background:var(--paper);
+    border-radius:46px;box-shadow:0 30px 80px rgba(62,50,28,0.28),inset 0 0 0 6px #1A1814;
+    display:flex;flex-direction:column;overflow:hidden;position:relative;
+    font-family:var(--sans);
+  }
+  .p-status{display:flex;justify-content:space-between;align-items:center;
+    padding:20px 24px 8px;font-size:12px;letter-spacing:0.08em;color:var(--dim);}
+  .p-badge{font-size:9.5px;letter-spacing:0.18em;color:var(--gold);
+    border:1px solid var(--gold-border);background:var(--gold-soft);padding:3px 9px;border-radius:99px;}
+  .p-say{padding:12px 24px 4px;}
+  .p-say .q{font-family:var(--serif);font-style:italic;font-weight:300;
+    font-size:17.5px;line-height:1.45;color:var(--ink);min-height:72px;transition:opacity .3s;}
+  .p-tabs{display:flex;gap:6px;padding:8px 20px 12px;flex-wrap:wrap;}
+  .p-tab{background:transparent;color:var(--faint);border:1px solid transparent;
+    border-radius:99px;padding:6px 12px;font-size:12px;letter-spacing:0.04em;
+    font-family:var(--sans);cursor:pointer;transition:all .2s;}
+  .p-tab.on{background:var(--surface);color:var(--ink);border-color:var(--hairline);
+    box-shadow:0 2px 8px rgba(31,28,22,0.06);}
+  .p-scroll{flex:1;overflow-y:auto;padding:2px 18px 132px;}
+  .p-scroll::-webkit-scrollbar{width:0;}
+
+  .pc{background:var(--surface);border:1px solid var(--hairline);
+    box-shadow:0 2px 10px rgba(31,28,22,0.05);border-radius:19px;
+    padding:15px 17px;margin-bottom:11px;animation:rise .4s ease both;}
+  .pc-dot{width:7px;height:7px;border-radius:99px;display:inline-block;}
+  .pc-label{font-size:9.5px;letter-spacing:0.2em;color:var(--faint);}
+  .pc-title{font-size:14.5px;font-weight:500;color:var(--ink);margin:7px 0 5px;}
+  .pc-body{font-family:var(--serif);font-style:italic;font-weight:300;
+    font-size:14px;line-height:1.5;color:var(--dim);margin-bottom:11px;}
+  .pill{border-radius:99px;padding:7px 15px;font-size:12.5px;font-weight:500;
+    font-family:var(--sans);cursor:pointer;border:1px solid var(--gold-border);
+    background:var(--gold-soft);color:var(--gold);}
+  .pill-ghost{background:transparent;border:none;color:var(--faint);padding:7px 11px;}
+  .p-note{padding:2px 6px 12px;font-size:12px;color:var(--faint);line-height:1.5;}
+
+  .p-bar{height:4px;border-radius:99px;background:rgba(31,28,22,0.08);margin:6px 0 8px;overflow:hidden;}
+  .p-bar > i{display:block;height:100%;border-radius:99px;background:var(--bar);transition:width 1.1s linear;}
+  .mono{font-family:var(--mono);font-size:10.5px;color:var(--faint);}
+  .p-next{font-size:10px;letter-spacing:0.2em;color:var(--faint);
+    padding:6px 0 4px;border-top:1px solid var(--hairline);margin-top:8px;}
+  .p-q{font-family:var(--mono);font-size:11px;color:var(--dim);padding:3px 0;}
+
+  .p-dock{position:absolute;left:0;right:0;bottom:0;padding:14px 18px 24px;
+    background:linear-gradient(to top,var(--paper) 62%,transparent);}
+  .p-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;}
+  .p-chip{background:var(--gold-soft);color:var(--gold);border:1px solid var(--gold-border);
+    border-radius:99px;padding:6px 11px;font-size:11px;font-family:var(--sans);cursor:pointer;}
+  .p-chipbox{background:var(--surface);border:1px solid var(--hairline);border-radius:20px;
+    padding:13px;margin-bottom:12px;box-shadow:0 8px 30px rgba(31,28,22,0.10);}
+  .p-input{width:100%;border:none;background:transparent;outline:none;
+    font-family:var(--serif);font-style:italic;font-size:15px;color:var(--ink);}
+  .p-input::placeholder{color:var(--faint);}
+  .p-mic-wrap{display:flex;justify-content:center;}
+  .p-mic{width:64px;height:64px;border-radius:99px;border:none;cursor:pointer;position:relative;
+    background:radial-gradient(circle at 35% 30%,#E8B15C,#A9741F 70%);
+    box-shadow:0 8px 30px rgba(154,103,29,0.28);transition:box-shadow .3s;}
+  .p-mic.live{box-shadow:0 8px 30px rgba(154,103,29,0.5);}
+  .ring{position:absolute;border-radius:99px;}
+  .ring1{inset:-8px;border:1.5px solid rgba(154,103,29,0.3);animation:breathe 3.4s ease-in-out infinite;}
+  .ring2{inset:-18px;border:1px solid rgba(154,103,29,0.2);animation:breathe2 3.4s ease-in-out infinite;}
+  .p-mic.live .ring1{animation-duration:1.6s;border-color:rgba(154,103,29,0.55);}
+  .p-mic.live .ring2{animation-duration:1.6s;}
+  .p-state{text-align:center;margin-top:9px;font-size:10.5px;letter-spacing:0.22em;color:var(--faint);}
+
+  .p-toggle{background:var(--gold);color:#FBF6EC;border:1px solid transparent;
+    border-radius:99px;padding:8px 15px;font-size:12px;font-weight:500;font-family:var(--sans);cursor:pointer;}
+  .p-toggle.off{background:var(--raised);color:var(--dim);border-color:var(--hairline);}
+
+  @keyframes breathe{0%,100%{transform:scale(1);opacity:.9}50%{transform:scale(1.12);opacity:.5}}
+  @keyframes breathe2{0%,100%{transform:scale(1);opacity:.35}50%{transform:scale(1.28);opacity:.12}}
+  @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  @media(prefers-reduced-motion:reduce){.ring,.pc{animation:none!important;}}
+
+  @media(max-width:900px){
+    .hero-grid{grid-template-columns:1fr;gap:40px;}
+    .hero{padding:48px 0 24px;}
+    .phone{width:min(360px,92vw);}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-in">
+    <span class="brand">OTIUM</span>
+    <div class="nav-links">
+      <a href="#does">The idea</a>
+      <a href="#never">What it won't do</a>
+      <a href="#real">When it's real</a>
+      <a href="#start" class="btn btn-ghost">Get started</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ————— HERO ————— -->
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div class="rise in">
+      <span class="eyebrow">A life spent on what you meant it to be</span>
+      <h1>Most people don't live the way they meant to.</h1>
+      <p class="hero-sub">Not from weakness. Staying on track — every errand, message, and small decision pointed at what you actually care about — is a full-time job nobody has. OTIUM does that job.</p>
+      <div class="hero-cta">
+        <a href="#start" class="btn">Get started</a>
+        <span class="hero-note">The AI future monoapp</span>
+      </div>
+    </div>
+    <div class="phone-stage rise in" aria-hidden="false">
+      <div class="phone" id="phone" role="group" aria-label="OTIUM product preview">
+        <div class="p-status">
+          <span id="p-time">3:42</span>
+          <span class="p-badge">ON-DEVICE</span>
+          <span>▮▮▮ 94</span>
+        </div>
+        <div class="p-say"><div class="q" id="p-say">“Good afternoon. Bench at six, dinner with Rob at eight. Ask me for any view you can describe — I'll build it on the spot.”</div></div>
+        <div class="p-tabs" id="p-tabs"></div>
+        <div class="p-scroll" id="p-scroll"></div>
+
+        <div class="p-dock">
+          <div class="p-chipbox" id="p-chipbox" style="display:none">
+            <div class="p-chips" id="p-chips"></div>
+            <input class="p-input" id="p-input" placeholder="Speak… describe any view and I'll build it" />
+          </div>
+          <div class="p-mic-wrap">
+            <button class="p-mic" id="p-mic" aria-label="Tap to speak">
+              <span class="ring ring1"></span><span class="ring ring2"></span>
+            </button>
+          </div>
+          <div class="p-state" id="p-state">ALWAYS ON · TAP TO SPEAK</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ————— THE GAP ————— -->
+<section class="band">
+  <div class="wrap two-col rise">
+    <p class="lead">The gap doesn't announce itself. It just quietly widens.</p>
+    <div class="prose">
+      <p>You said this year would be different. Then the days filled up — replies, logistics, the hundred small things that have to happen for anything to happen. Almost none of it was what you meant to spend your life on.</p>
+      <p>The distance between what you said mattered and what you actually did is the thing OTIUM was built to close.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ————— WHAT IT DOES ————— -->
+<section id="does">
+  <div class="wrap two-col rise">
+    <div><span class="eyebrow">The idea</span></div>
+    <div class="prose">
+      <p>You tell it, once and in depth, what you want your life to actually look like — <strong>what's worth your time, what isn't, what you want handled, and what you want to keep for yourself.</strong></p>
+      <p>From then on it works from that. Every demand on your time gets sorted against it: handled quietly, brought to you, or pushed back. You spend your attention on what you chose. The rest gets done without you.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ————— HOW IT WORKS ————— -->
+<section class="band">
+  <div class="wrap rise">
+    <span class="eyebrow">How it works</span>
+    <div class="blocks" style="margin-top:26px">
+      <div class="block">
+        <h3>You write your own rules.</h3>
+        <p>A long first conversation turns what you care about into something the system can act on. It's yours. You change it whenever you want. Nothing is locked.</p>
+      </div>
+      <div class="block">
+        <h3>It handles the moving parts.</h3>
+        <p>One request — “sort out the trip” — and it coordinates the pieces: the bookings, the calendar, the people, the budget you set. Across services, vendors, and, when they're ready, robots.</p>
+      </div>
+      <div class="block">
+        <h3>You see whatever you ask to see.</h3>
+        <p>There's no fixed set of screens. Describe the view you want — this week against your budget, everything you keep putting off — and it builds it. Keep it or drop it.</p>
+      </div>
+      <div class="block">
+        <h3>Once a week, an honest look.</h3>
+        <p>It shows you your life next to what you said you wanted. Not a score. Not advice. Just the truth — so if you're drifting, it's a choice you make on purpose, not one you slide into.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ————— WHAT IT WILL NEVER DO ————— -->
+<section id="never">
+  <div class="wrap rise">
+    <span class="eyebrow">What it will never do</span>
+    <div class="nevers">
+      <div class="never">
+        <h3>It won't tell you how to live.</h3>
+        <p>There's no built-in idea of a good life in here. Spend your days gaming, or chasing a Nobel — same system, zero judgment. It measures your life against your rules, never anyone else's.</p>
+      </div>
+      <div class="never">
+        <h3>It won't act behind your back.</h3>
+        <p>You hand it control one piece at a time, at your pace. Everything it does can be undone. When it isn't sure, it asks.</p>
+      </div>
+      <div class="never">
+        <h3>It won't lock you in.</h3>
+        <p>The rules you write are yours to take with you. Open standard, open code, your data exportable. If we ever make it worse, someone forks it — and you walk out with everything that matters.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ————— WHEN IT'S REAL ————— -->
+<section class="real" id="real">
+  <div class="wrap rise">
+    <span class="eyebrow">When it's real</span>
+    <p class="honest">You can start today. The full vision — every service open, a robot in every home — is <em>about a decade out.</em></p>
+    <p class="fine">Right now OTIUM connects your finances, and handles email and phone calls on your behalf. Add a robot and it takes on the physical world too. <strong>The rest arrives as daily-life services open up and machines get cheaper and better.</strong> You don't wait for that — you grow into it, one piece at a time, at your pace.</p>
+  </div>
+</section>
+
+<!-- ————— GET STARTED ————— -->
+<section id="start">
+  <div class="wrap rise">
+    <span class="eyebrow">Get started</span>
+    <p class="lead" style="max-width:26ch;margin:14px 0 34px">Three steps. In your own time. Stop at any one.</p>
+    <div class="steps">
+      <div class="step">
+        <span class="step-n">01</span>
+        <h3>Connect your finances</h3>
+        <p>Link your accounts, bills, and budget. It sorts them, catches the duplicate charge, disputes what's wrong, and holds the line on what you set. This is where everyone starts.</p>
+      </div>
+      <div class="step">
+        <span class="step-n">02</span>
+        <h3>Let it speak for you</h3>
+        <p>Email and phone calls, handled on your behalf — the renewal, the appointment, the back-and-forth nobody wants. You approve what matters; the rest just gets done.</p>
+      </div>
+      <div class="step">
+        <span class="step-n">03</span>
+        <h3>Add a robot</h3>
+        <p>Own or rent a single unit — a Unitree today, more arriving fast. Now the physical world gets handled too: the errands, the chores, the things software alone can't touch.</p>
+      </div>
+    </div>
+    <div class="stack" style="margin-top:34px;align-items:center">
+      <a href="#" class="btn">Get started</a>
+      <span class="hero-note">Your rules, your data, reversible — always.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ————— CLOSE ————— -->
+<section class="close rise">
+  <div class="wrap">
+    <p class="big">You already know how you want to live. This is for the part that comes after.</p>
+    <a href="#start" class="btn">Get started</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-in">
+    <span>OTIUM · run your life</span>
+    <span><a href="mailto:hello@otium.run">hello@otium.run</a> &nbsp;·&nbsp; <a href="#">open source &amp; spec</a> &nbsp;·&nbsp; otium.run</span>
+  </div>
+</footer>
+
+<script>
+/* ————————————————————————————————————————
+   Phone: scrubbed, canned port of prototype.jsx
+   No network. All views driven by local state.
+   ———————————————————————————————————————— */
+(function(){
+  var DOMAINS = {
+    travel:{label:"EXPERIENCES",hue:"#4A7196"}, leisure:{label:"EXPERIENCES",hue:"#A8862C"},
+    fitness:{label:"HABITS",hue:"#A85238"}, social:{label:"RELATIONSHIPS",hue:"#8A5E88"},
+    invest:{label:"WEALTH",hue:"#5E7F4E"}, health:{label:"HEALTH",hue:"#3E7E6C"},
+    adulting:{label:"ADULTING",hue:"#5F5F86"}, growth:{label:"GROWTH",hue:"#8A7433"}
+  };
+  var cards = [
+    {id:0,domain:"adulting",title:"Clinic bill · disputed",body:"Found a duplicate $340 charge. Dispute is filed with evidence — refund lands in 5 to 7 days.",action:"Perfect"},
+    {id:1,domain:"health",title:"Vitals · all in range",body:"You slept 7h 10m, resting heart rate 54. Recovery looks good for tonight's heavy set.",action:"See trends"},
+    {id:2,domain:"travel",title:"San Antonio → Monterrey",body:"Round trip dropped to $118. Holding the Friday 7:05am for 24 hours, no commitment.",action:"Book it"},
+    {id:3,domain:"social",title:"Dinner with Rob · Saturday",body:"Rob is free Saturday evening in Austin. Want me to hold a table at 8?",action:"Hold it"},
+    {id:4,domain:"invest",title:"Your investments · +3.1%",body:"A little ahead of plan. No rush — I'd wait until Friday's close to rebalance.",action:"See detail"},
+    {id:5,domain:"adulting",title:"Car insurance · renews soon",body:"Compared six insurers: same coverage, 18% cheaper. I can make the switch myself.",action:"Switch it"}
+  ];
+  var bots = [
+    {id:"vulcan",role:"Car robot",name:"VULCAN",station:"in the garage",task:"Rotating the tires and checking the oil",progress:62,paused:false,queue:["Inspect the brakes","Top off the coolant"],note:"car is safely secured"},
+    {id:"hestia",role:"Home robot",name:"HESTIA",station:"at home",task:"Deep-cleaning the kitchen",progress:38,paused:false,queue:["Fold the laundry","Water the plants"],note:"cats located: sofa and windowsill"},
+    {id:"hermes",role:"Errand robot",name:"HERMES",station:"on the road",task:"Picking up the dry cleaning",progress:81,paused:false,queue:["Curbside grocery at 5:40","Pharmacy refill"],note:"arriving in 12 minutes"}
+  ];
+  var ARCS = [
+    {name:"Strength",goal:"Bench 275",progress:89,now:"245 × 3 this week — bar speed still climbing",next:"250 × 3 · Tuesday 6pm",why:"Chosen 14 months ago. Still yours."},
+    {name:"Mind",goal:"Montaigne · the Essays",progress:60,now:"Book II — you keep re-reading 'On Idleness'",next:"15 min tonight, before bed",why:"Read the people who already solved leisure."},
+    {name:"Craft",goal:"12 essays this year",progress:25,now:"Essay 3 drafted, unfinished for 11 days",next:"400 words · Sunday morning, coffee",why:"Making something beats consuming everything."}
+  ];
+  var AUDIT = [
+    {pillar:"Habits",val:92,note:"4 of 4 workouts done"},
+    {pillar:"Health",val:88,note:"sleep steady, averaging 7h 05m"},
+    {pillar:"Wealth",val:85,note:"budget held, dispute won"},
+    {pillar:"Relationships",val:74,note:"call with your sister done · Rob still pending"},
+    {pillar:"Mind",val:40,note:"only 1 of 5 reading sessions — weakest this week"}
+  ];
+  var CHIPS = ["Show my Monterrey trips","Build me a view for the cats","What should I take on next?","How's my week going?"];
+  var CANNED = {
+    "Show my Monterrey trips":{spoken:"Built it just now — your Monterrey view is on the surface. Keep it and it becomes a tab; dismiss it and it's gone.",surface:{title:"Monterrey · your trips",items:[
+      {label:"Last trip",value:"March · 4 days",note:"Barrio Antiguo at night, 22,000 steps"},
+      {label:"Most photographed",value:"Cerro de la Silla",note:"dusk, from the Macroplaza side"},
+      {label:"Open loop",value:"The mezcal bar Rob mentioned",note:"still unvisited — near your usual taquería"}
+    ]}},
+    "Build me a view for the cats":{spoken:"Here's a view for the two of them. Keep it if it's useful.",surface:{title:"The cats",items:[
+      {label:"Last vet visit",value:"Both current",note:"next checkup not due until spring"},
+      {label:"Food",value:"6 days left",note:"auto-reorder set for Thursday"},
+      {label:"Right now",value:"Sofa & windowsill",note:"same as always"}
+    ]}},
+    "What should I take on next?":{spoken:"You said reading is where you're weakest this week — one session of five. That's the honest gap, if you want one."},
+    "How's my week going?":{spoken:"Strong in body and money, thin on reading. You said fifteen minutes a day; it happened once. Want me to defend it on your calendar?"}
+  };
+
+  var state = { tab:"today", growthMode:"deliberate", dynSurface:null, kept:[], listening:false };
+  var $ = function(id){ return document.getElementById(id); };
+  var esc = function(s){ return String(s).replace(/[&<>]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;"}[c];}); };
+  function say(t){ var el=$("p-say"); el.style.opacity=0; setTimeout(function(){ el.textContent="“"+t+"”"; el.style.opacity=1; },180); }
+
+  function renderTabs(){
+    var t=$("p-tabs"); t.innerHTML="";
+    var active=bots.filter(function(b){return !b.paused;}).length;
+    var tabs=[["today","Today"],["bots","Robots · "+active],["growth","Growth"],["week","This week"]];
+    state.kept.forEach(function(s,i){ tabs.push(["dyn-"+i, s.title.split("·")[0].trim()]); });
+    tabs.forEach(function(pair){
+      var b=document.createElement("button");
+      b.className="p-tab"+(state.tab===pair[0]?" on":"");
+      b.textContent=pair[1];
+      b.onclick=function(){ state.tab=pair[0]; render(); };
+      t.appendChild(b);
+    });
+  }
+
+  function surfaceHTML(s,pinned){
+    var head = pinned
+      ? '<span class="pc-label" style="color:var(--gold)">YOUR SURFACE</span>'
+      : '<span class="pc-label" style="color:var(--gold)">GENERATED ON THE FLY</span>'+
+        '<span><button class="pill" id="keep-surf" style="padding:4px 12px;font-size:11px">Keep as tab</button>'+
+        '<button class="pill-ghost" id="dismiss-surf" style="font-size:11px">Dismiss</button></span>';
+    var items = s.items.map(function(it,i){
+      return '<div style="padding:9px 0;border-top:'+(i===0?"none":"1px solid var(--hairline)")+'">'+
+        '<div style="display:flex;justify-content:space-between;gap:12px"><span style="font-size:12.5px;color:var(--dim)">'+esc(it.label)+'</span>'+
+        '<span style="font-size:12.5px;color:var(--ink);font-weight:500;text-align:right">'+esc(it.value)+'</span></div>'+
+        (it.note?'<div style="font-family:var(--serif);font-style:italic;font-weight:300;font-size:13px;color:var(--faint)">'+esc(it.note)+'</div>':'')+
+      '</div>';
+    }).join("");
+    return '<div class="pc" style="'+(pinned?'':'border-color:var(--gold-border);box-shadow:0 6px 24px rgba(154,103,29,0.14)')+'">'+
+      '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">'+head+'</div>'+
+      '<div class="pc-title">'+esc(s.title)+'</div>'+items+'</div>';
+  }
+
+  function render(){
+    renderTabs();
+    var v=state.tab, out="";
+
+    if(v==="today"){
+      if(state.dynSurface) out+=surfaceHTML(state.dynSurface,false);
+      cards.forEach(function(c){
+        var d=DOMAINS[c.domain];
+        out+='<div class="pc" data-card="'+c.id+'">'+
+          '<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span class="pc-dot" style="background:'+d.hue+'"></span><span class="pc-label">'+d.label+'</span></div>'+
+          '<div class="pc-title">'+esc(c.title)+'</div>'+
+          '<div class="pc-body">'+esc(c.body)+'</div>'+
+          '<div style="display:flex;gap:8px"><button class="pill" data-do="'+c.id+'">'+esc(c.action)+'</button>'+
+          '<button class="pill-ghost" data-later="'+c.id+'">Later</button></div></div>';
+      });
+    }
+
+    else if(v==="bots"){
+      out+='<div class="p-note">Your three robots work on their own while you live your life. Here\'s what each is doing now, and what\'s next.</div>';
+      bots.forEach(function(b){
+        var pct=Math.round(Math.min(b.progress,100));
+        out+='<div class="pc">'+
+          '<div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-size:14.5px;color:var(--ink);font-weight:500">'+b.role+' <span class="pc-dot" style="background:'+(b.paused?"var(--faint)":"#5E7F4E")+';margin-left:6px"></span></span>'+
+          '<span class="mono">'+b.name+' · '+b.station+'</span></div>'+
+          '<div style="font-family:var(--serif);font-style:italic;font-weight:300;font-size:15px;color:var(--dim);margin:6px 0 8px">Now: '+esc(b.task)+'</div>'+
+          '<div class="p-bar"><i style="width:'+pct+'%;background:'+(b.paused?"var(--faint)":"var(--bar)")+'"></i></div>'+
+          '<div class="mono" style="display:flex;justify-content:space-between"><span>'+esc(b.note)+'</span><span>'+pct+'% done</span></div>'+
+          (b.queue.length?'<div class="p-next">UP NEXT</div>'+b.queue.map(function(q){return '<div class="p-q">› '+esc(q)+'</div>';}).join(""):'')+
+          '<div style="display:flex;gap:8px;margin-top:10px"><button class="pill" style="background:var(--raised);color:var(--ink);border-color:var(--hairline)" data-pause="'+b.id+'">'+(b.paused?"Resume":"Pause")+'</button></div>'+
+        '</div>';
+      });
+    }
+
+    else if(v==="growth"){
+      out+='<div class="pc" style="border:none;box-shadow:none;background:transparent;font-family:var(--serif);font-style:italic;font-weight:300;font-size:16px;line-height:1.55;color:var(--dim);padding:4px 4px 14px">“No job defines you here. These are the things you chose to keep working on — I keep them alive, you set the pace. Quitting one is allowed; forgetting you had the option is not.”</div>';
+      var dm=state.growthMode==="deliberate";
+      out+='<div class="pc" style="display:flex;justify-content:space-between;align-items:center">'+
+        '<div><div style="font-size:13.5px;font-weight:500;color:var(--ink)">'+(dm?"Deliberate mode":"Drift mode")+'</div>'+
+        '<div style="font-size:11.5px;color:var(--faint);max-width:180px;line-height:1.4">'+(dm?"I schedule next steps and defend them on your calendar.":"No scheduling, no nudges. It stays warm; the door stays open.")+'</div></div>'+
+        '<button class="p-toggle'+(dm?'':' off')+'" data-mode="1">'+(dm?"Switch to drift":"Re-engage")+'</button></div>';
+      ARCS.forEach(function(a){
+        out+='<div class="pc" style="opacity:'+(dm?1:0.65)+'">'+
+          '<div style="display:flex;justify-content:space-between;align-items:baseline"><span class="pc-label">'+a.name.toUpperCase()+'</span><span class="mono" style="color:var(--gold)">'+a.progress+'%</span></div>'+
+          '<div class="pc-title" style="margin:4px 0 6px">'+esc(a.goal)+'</div>'+
+          '<div class="p-bar"><i style="width:'+a.progress+'%"></i></div>'+
+          '<div style="font-family:var(--serif);font-style:italic;font-weight:300;font-size:13.5px;color:var(--dim);margin-bottom:6px">'+esc(a.now)+'</div>'+
+          (dm?'<div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--hairline);padding-top:8px"><span style="font-size:12px;color:var(--dim)">Next: '+esc(a.next)+'</span><button class="pill" style="padding:5px 12px;font-size:11.5px" data-hold="'+esc(a.next)+'">Hold it</button></div>':'')+
+          '<div style="font-size:10.5px;color:var(--faint);margin-top:8px">'+esc(a.why)+'</div></div>';
+      });
+      out+='<div class="pc"><div class="pc-label" style="margin-bottom:10px">THIS WEEK\'S TIME</div>'+
+        [["Growth",6,"var(--bar)"],["Leisure",14,"#4A7196"],["People",9,"#8A5E88"]].map(function(r){
+          return '<div style="margin-bottom:8px"><div style="display:flex;justify-content:space-between;font-size:12px;color:var(--dim)"><span>'+r[0]+'</span><span class="mono">'+r[1]+'h</span></div><div class="p-bar"><i style="width:'+(r[1]/14*100)+'%;background:'+r[2]+'"></i></div></div>';
+        }).join("")+
+        '<div style="font-family:var(--serif);font-style:italic;font-weight:300;font-size:13px;color:var(--faint);margin-top:8px;line-height:1.5">Growth is seasoning, not the meal. This ratio is healthy — I\'d only speak up if it hit zero.</div></div>';
+    }
+
+    else if(v==="week"){
+      out+='<div class="pc" style="border:none;box-shadow:none;background:transparent;font-family:var(--serif);font-style:italic;font-weight:300;font-size:16px;line-height:1.55;color:var(--dim);padding:4px 4px 16px">“Your week against what you said mattered: strong in body and money, thin on the mind. You said fifteen minutes of reading a day — it happened once. Want me to defend it on your calendar?”</div>';
+      AUDIT.forEach(function(a){
+        var ok=a.val>=70;
+        out+='<div class="pc"><div style="display:flex;justify-content:space-between;margin-bottom:8px"><span style="font-size:13.5px;font-weight:500;color:var(--ink)">'+a.pillar+'</span><span class="mono" style="color:'+(ok?"var(--gold)":"var(--low)")+'">'+a.val+'%</span></div>'+
+          '<div class="p-bar"><i style="width:'+a.val+'%;background:'+(ok?"var(--bar)":"var(--low)")+'"></i></div>'+
+          '<div style="font-size:12px;color:var(--faint)">'+esc(a.note)+'</div></div>';
+      });
+    }
+
+    else if(v.indexOf("dyn-")===0){
+      var idx=parseInt(v.slice(4),10);
+      if(state.kept[idx]) out+=surfaceHTML(state.kept[idx],true);
+    }
+
+    $("p-scroll").innerHTML=out;
+    wire();
+  }
+
+  function wire(){
+    var s=$("p-scroll");
+    s.querySelectorAll("[data-do]").forEach(function(b){ b.onclick=function(){ removeCard(+b.getAttribute("data-do")); say("Done — it's handled. I'll confirm when it clears."); }; });
+    s.querySelectorAll("[data-later]").forEach(function(b){ b.onclick=function(){ removeCard(+b.getAttribute("data-later")); }; });
+    s.querySelectorAll("[data-pause]").forEach(function(b){ b.onclick=function(){ var id=b.getAttribute("data-pause"); bots.forEach(function(x){ if(x.id===id) x.paused=!x.paused; }); render(); }; });
+    s.querySelectorAll("[data-mode]").forEach(function(b){ b.onclick=function(){ state.growthMode=state.growthMode==="deliberate"?"drift":"deliberate"; render(); }; });
+    s.querySelectorAll("[data-hold]").forEach(function(b){ b.onclick=function(){ say((b.getAttribute("data-hold")||"It").toLowerCase()+" is on your calendar and defended."); }; });
+    var keep=$("keep-surf"), dis=$("dismiss-surf");
+    if(keep) keep.onclick=function(){ state.kept.push(state.dynSurface); state.tab="dyn-"+(state.kept.length-1); state.dynSurface=null; say("Pinned. It's a tab now — say the word and I'll retire it whenever."); render(); };
+    if(dis) dis.onclick=function(){ state.dynSurface=null; say("Gone."); render(); };
+  }
+
+  function removeCard(id){ cards=cards.filter(function(c){return c.id!==id;}); render(); }
+
+  function ask(text){
+    if(!text) return;
+    var hit=CANNED[text];
+    if(hit){
+      if(hit.surface){ state.dynSurface=hit.surface; state.tab="today"; }
+      say(hit.spoken); render();
+    } else {
+      say("This is a preview — in the live version I'd build that for you on the spot.");
+    }
+    state.listening=false; renderDock();
+  }
+
+  function renderChips(){
+    var c=$("p-chips"); c.innerHTML="";
+    CHIPS.forEach(function(ch){ var b=document.createElement("button"); b.className="p-chip"; b.textContent=ch; b.onclick=function(){ ask(ch); }; c.appendChild(b); });
+  }
+  function renderDock(){
+    $("p-chipbox").style.display = state.listening?"block":"none";
+    $("p-mic").classList.toggle("live",state.listening);
+    $("p-state").textContent = state.listening?"LISTENING":"ALWAYS ON · TAP TO SPEAK";
+    if(state.listening) setTimeout(function(){ var i=$("p-input"); if(i) i.focus(); },30);
+  }
+
+  $("p-mic").onclick=function(){ state.listening=!state.listening; renderDock(); };
+  $("p-input").addEventListener("keydown",function(e){ if(e.key==="Enter"){ ask(e.target.value.trim()); e.target.value=""; } });
+
+  /* live bot progress */
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if(!reduce){
+    setInterval(function(){
+      var changed=false;
+      bots.forEach(function(b){
+        if(b.paused) return;
+        b.progress += Math.random()*3.0;
+        if(b.progress>=100){
+          if(b.queue.length){ b.task=b.queue.shift(); b.progress=0; }
+          else { b.task="Resting · docked"; b.progress=100; b.paused=true; }
+          changed=true;
+        }
+      });
+      if(state.tab==="bots") render(); else if(changed) renderTabs();
+    },1500);
+  }
+
+  /* clock */
+  function tick(){ var d=new Date(); var h=d.getHours()%12||12; var m=String(d.getMinutes()).padStart(2,"0"); $("p-time").textContent=h+":"+m; }
+  tick(); setInterval(tick,15000);
+
+  renderChips(); render(); renderDock();
+})();
+
+/* scroll reveal for marketing sections */
+(function(){
+  var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } }); },{threshold:0.12});
+  document.querySelectorAll(".rise:not(.in)").forEach(function(el){ io.observe(el); });
+})();
+</script>
+</body>
+</html>
